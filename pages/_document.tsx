@@ -5,6 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <body>
+        <title>Pink's KDS: Krazy Display Service</title>
         <Main />
         <NextScript />
       </body>
