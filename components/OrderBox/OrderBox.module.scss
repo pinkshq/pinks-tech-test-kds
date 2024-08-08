@@ -1,0 +1,97 @@
+$primary-color: #2c3e50;
+$secondary-color: #ecf0f1;
+$accent-color: #e74c3c;
+$state-pending: #f39c12;
+$state-in-progress: #3498db;
+$state-ready: #2ecc71;
+$state-delivered: #95a5a6;
+$border-radius: 8px;
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+.order-box {
+  background-color: $secondary-color;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  overflow: hidden;
+  max-width: 400px;
+  margin: 0.5rem;
+  margin-bottom: 0rem;
+  padding: 0.5rem;
+
+  .order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    .order-id {
+      font-size: 0.8rem;
+      color: $primary-color;
+      margin: 0;
+    }
+
+    .rider-state {
+      
+      font-size: 0.8rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      color: #fff;
+      background-color: $state-pending; // Default color for "PENDING"
+      
+      &.in-progress {
+        background-color: $state-in-progress;
+      }
+      
+      &.ready {
+        background-color: $state-ready;
+      }
+      
+      &.delivered {
+        background-color: $state-delivered;
+      }
+    }
+  }
+
+  .order-items {
+    .order-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      padding: 0.5rem;
+      border-bottom: 1px solid $primary-color;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .item-image {
+        width: 25px;
+        height: 25px;
+        overflow: hidden;
+        margin-right: 1rem;
+
+        img {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+      }
+
+      .item-details {
+        flex-grow: 1;
+
+        .item-name {
+          font-size: 0.9rem;
+          color: $primary-color;
+          margin: 0;
+        }
+
+        .item-price {
+          font-size: 1rem;
+          color: $accent-color;
+          margin: 0.25rem 0 0 0;
+        }
+      }
+    }
+  }
+}

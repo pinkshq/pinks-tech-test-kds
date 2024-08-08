@@ -34,21 +34,26 @@ export default function Kanban() {
         title="Pendiente"
         orders={orders.filter((i) => i.state === "PENDING")}
         onClick={switchColumn}
+        column="pending"
       />
       <Column
         title="En preparación"
         orders={orders.filter((i) => i.state === "IN_PROGRESS")}
         onClick={switchColumn}
+        column="in-progress"
       />
       <Column
         title="Listo"
         orders={orders.filter((i) => i.state === "READY")}
         onClick={switchColumn}
+        riders={riders}
+        column="ready"
       />
       <Column
         title="Entregado"
         orders={orders.filter((i) => i.state === "DELIVERED").reverse()}
         onClick={switchColumn}
+        column="Delivered"
       />
     </section>
   );

@@ -40,20 +40,7 @@ export function OrdersProvider(props: OrdersProviderProps) {
     if (!order) return;
 
     if (order.state !== "READY") return;
-
-    console.log(riders);
-
-    // riders.forEach((rider) => {
-    //   if (rider.orderWanted === order.id) {
-    //     console.log("Rider picked up order", order);
-    //     rider.pickup(order);
-    //   }
-    // });
-
-    console.log("Picking up order", order);
     order.state = "DELIVERED";
-
-    // setOrders((prev) => prev.filter((i) => i.id !== order.id));
   };
 
   const context = {
