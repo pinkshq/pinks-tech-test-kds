@@ -8,9 +8,11 @@ import {
 import { useOrders } from "./Orders.context";
 import { getRandomInterval } from "@/lib/utils";
 import { Rider } from "@/dtos/Rider.dto";
+import { Dispatch, SetStateAction } from "react";
 
 export type RidersContextProps = {
   riders: Array<Rider>;
+  setRiders: Dispatch<SetStateAction<Rider[]>>;
 };
 
 export const RidersContext = createContext<RidersContextProps>(
@@ -43,7 +45,7 @@ export function RidersProvider(props: RidersProviderProps) {
     }
   }, [orders]);
 
-  const context = { riders };
+  const context = { riders, setRiders };
   return (
     <RidersContext.Provider value={context}>
       {props.children}
