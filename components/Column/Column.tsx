@@ -16,7 +16,7 @@ export default function Column(props: ColumnProps) {
     if (props.column === "Delivered") return "Entregando";
     if (props.riders === undefined) return "Pendiente";
     const rider = props.riders?.find((rider) => rider.orderWanted === order.id);
-    return rider ? "Available" : "Pending";
+    return rider ? "Disponible" : "Pendiente";
   };
 
   return (

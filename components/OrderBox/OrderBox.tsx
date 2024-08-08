@@ -13,9 +13,8 @@ export default function OrderBox({
     <div className={s["order-box"]}>
       <div className={s["order-header"]}>
         <h2 className={s["order-id"]}>Order ID: {order.id}</h2>
-        <h2 className={s["order-id"]}>
-          Rider: <span className={s["rider-state"]}>{rider}</span>
-        </h2>
+        <h2 className={s["order-id"]}>Rider:</h2>
+        <span className={`${s["rider-state"]} ${s[rider]}`}>{rider}</span>
       </div>
       <div className={s["order-items"]}>
         {order.items.map((item) => (
