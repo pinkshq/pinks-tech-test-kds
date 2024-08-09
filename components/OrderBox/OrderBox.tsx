@@ -24,9 +24,6 @@ export default function OrderBox({
             </div>
             <div className={s["item-details"]}>
               <h3 className={s["item-name"]}>{item.name}</h3>
-              <p className={s["item-price"]}>
-                {item.price.currency} - {item.price.amount}
-              </p>
             </div>
           </div>
         ))}

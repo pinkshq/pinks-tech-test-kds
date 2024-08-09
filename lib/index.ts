@@ -23,6 +23,12 @@ export class OrderOrchestrator {
             image: "img/burger.png",
             price: { currency: "EUR", amount: 10 },
           },
+          {
+            id: getRandomId(),
+            name: "Item - " + getRandomId(),
+            image: "img/burger.png",
+            price: { currency: "EUR", amount: 15 },
+          },
         ],
       });
       this.maxOrders--;
