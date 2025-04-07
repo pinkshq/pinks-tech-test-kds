@@ -7,10 +7,12 @@ import {
   useEffect,
   useState,
 } from "react";
+import { useRiders } from "./Riders.context";
 
 export type OrdersContextProps = {
   orders: Array<Order>;
-  pickup: (order: Order) => void;
+  pickup: (order?: Order) => void;
+  setOrders: (orders: Array<Order>) => void;
 };
 
 export const OrdersContext = createContext<OrdersContextProps>(
@@ -24,6 +26,7 @@ export type OrdersProviderProps = {
 
 export function OrdersProvider(props: OrdersProviderProps) {
   const [orders, setOrders] = useState<Array<Order>>([]);
+  const { riders } = useRiders();
 
   useEffect(() => {
     const orderOrchestrator = new OrderOrchestrator();
@@ -33,14 +36,16 @@ export function OrdersProvider(props: OrdersProviderProps) {
     });
   }, []);
 
-  const pickup = (order: Order) => {
-    alert(
-      "necesitamos eliminar del kanban a la orden recogida! Rapido! antes que nuestra gente de tienda se confunda!"
-    );
+  const pickup = (order?: Order) => {
+    if (!order) return;
+
+    if (order.state !== "READY") return;
+    order.state = "DELIVERED";
   };
 
   const context = {
     orders,
+    setOrders,
     pickup,
   };
 
