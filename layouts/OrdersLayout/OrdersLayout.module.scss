@@ -20,11 +20,13 @@
   }
   &__app {
     display: grid;
-    display: grid;
-    width: 100%;
-    height: 100dvb;
-    grid-template-columns: auto 360px;
-    gap: 20px;
-    background-color: $gray-1000;
+    grid-template-columns: 1fr 300px;
+    gap: 24px;
+    padding: 24px;
+    height: calc(100vh - 60px);
+  }
+  &__sidebar {
+    display: flex;
+    flex-direction: column;
   }
 }
