@@ -11,6 +11,10 @@ import {
 export type OrdersContextProps = {
   orders: Array<Order>;
   pickup: (order: Order) => void;
+  updateOrderState: (
+    orderId: string,
+    state: "PENDING" | "IN_PROGRESS" | "READY" | "DELIVERED"
+  ) => void;
 };
 
 export const OrdersContext = createContext<OrdersContextProps>(
@@ -34,14 +38,27 @@ export function OrdersProvider(props: OrdersProviderProps) {
   }, []);
 
   const pickup = (order: Order) => {
-    alert(
-      "necesitamos eliminar del kanban a la orden recogida! Rapido! antes que nuestra gente de tienda se confunda!"
+    setOrders((prev) => prev.filter((o) => o.id !== order.id));
+  };
+
+  const updateOrderState = (
+    orderId: string,
+    state: "PENDING" | "IN_PROGRESS" | "READY" | "DELIVERED"
+  ) => {
+    setOrders((prev) =>
+      prev.map((order) => {
+        if (order.id === orderId) {
+          return { ...order, state };
+        }
+        return order;
+      })
     );
   };
 
   const context = {
     orders,
     pickup,
+    updateOrderState,
   };
 
   return (
