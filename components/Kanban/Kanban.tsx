@@ -1,35 +1,42 @@
 import s from "./Kanban.module.scss";
 import Column from "../Column";
 import { useOrders } from "@/contexts/Orders.context";
-import { Order } from "@/dtos/Order.dto";
+import { DragDropContext } from "react-beautiful-dnd";
+
+const columns = [
+  { key: "PENDING", title: "Pendiente" },
+  { key: "IN_PROGRESS", title: "En preparación" },
+  { key: "READY", title: "Listo" },
+];
 
 export default function Kanban() {
   const { orders, updateOrderState } = useOrders();
 
-  const handleStateChange = (order: Order) => {
-    if (order.state === "PENDING") {
-      updateOrderState(order.id, "IN_PROGRESS");
-    } else if (order.state === "IN_PROGRESS") {
-      updateOrderState(order.id, "READY");
+  const handleDragEnd = (result: any) => {
+    const { destination, source, draggableId } = result;
+    if (!destination) return;
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
     }
+    // Change order status according to target column
+    updateOrderState(draggableId, destination.droppableId as any);
   };
 
   return (
-    <section className={s["pk-kanban"]}>
-      <Column
-        title="Pendiente"
-        orders={orders.filter((i) => i.state === "PENDING")}
-        onClick={handleStateChange}
-      />
-      <Column
-        title="En preparación"
-        orders={orders.filter((i) => i.state === "IN_PROGRESS")}
-        onClick={handleStateChange}
-      />
-      <Column
-        title="Listo"
-        orders={orders.filter((i) => i.state === "READY")}
-      />
-    </section>
+    <DragDropContext onDragEnd={handleDragEnd}>
+      <section className={s["pk-kanban"]}>
+        {columns.map((col) => (
+          <Column
+            key={col.key}
+            title={col.title}
+            orders={orders.filter((i) => i.state === col.key)}
+            droppableId={col.key}
+          />
+        ))}
+      </section>
+    </DragDropContext>
   );
 }
