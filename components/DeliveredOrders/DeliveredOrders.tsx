@@ -11,7 +11,7 @@ export default function DeliveredOrders() {
 
   return (
     <div className={styles.deliveredBox}>
-      <h3 className={styles.title}>Total Pedidos Entregados</h3>
+      <h3 className={styles.title}>Pedidos Entregados</h3>
       <ul className={styles.list}>
         {deliveredOrders.map((order) => (
           <li key={order.id} className={styles.item}>
