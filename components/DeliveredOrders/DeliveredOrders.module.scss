@@ -1,0 +1,44 @@
+.deliveredBox {
+  width: 320px;
+  min-height: 170px;
+  max-height: 90vh;
+  height: max-content;
+  overflow: auto;
+  border: 1px solid #23272f;
+  border-radius: 12px;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: 100%;
+  justify-items: center;
+  gap: 12px;
+  background-color: #fff;
+  margin-top: 24px;
+  margin-left: 20px;
+  margin-right: auto;
+  margin-bottom: 24px;
+}
+
+.title {
+  margin: 0 0 12px 0;
+  font-size: 1.1rem;
+  color: #222;
+  font-weight: 600;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.item {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.98rem;
+  color: #222;
+}
+
+.item:last-child {
+  border-bottom: none;
+} 
