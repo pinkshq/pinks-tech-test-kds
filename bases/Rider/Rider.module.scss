@@ -22,10 +22,10 @@
     width: 100px;
     height: 100px;
     position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
     &:hover {
-      opacity: 0.8;
-      transform: scale(0.98);
-      cursor: pointer;
+      transform: scale(1.05);
     }
   }
   &__order {
@@ -39,4 +39,12 @@
     animation: appear 300ms 1000ms forwards;
   }
   animation: animation 1000ms;
+}
+
+.not-ready {
+  opacity: 0.5;
+  cursor: not-allowed;
+  &:hover {
+    transform: none;
+  }
 }

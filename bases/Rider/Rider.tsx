@@ -1,10 +1,27 @@
-import { Rider as RiderProps } from "@/dtos/Rider.dto";
+import { Order } from "@/dtos/Order.dto";
 import s from "./Rider.module.scss";
-export default function Rider(props: RiderProps) {
+
+type RiderProps = {
+  pickup: () => void;
+  order: Order;
+};
+
+export default function Rider({ pickup, order }: RiderProps) {
+  const isReady = order.state === "READY";
+
+  const handleClick = () => {
+    if (isReady) {
+      pickup();
+    }
+  };
+
   return (
-    <div onClick={() => props.pickup()} className={s["pk-rider__container"]}>
+    <div
+      onClick={handleClick}
+      className={`${s["pk-rider__container"]} ${!isReady ? s["not-ready"] : ""}`}
+    >
       <div className={s["pk-rider__order"]}>
-        <b>{props.orderWanted} !!</b>
+        <b>{order.id}</b>
       </div>
       <svg
         className={s["pk-rider"]}
