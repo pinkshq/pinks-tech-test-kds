@@ -7,6 +7,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { toast } from "react-hot-toast";
 
 export type OrdersContextProps = {
   orders: Array<Order>;
@@ -34,11 +35,14 @@ export function OrdersProvider(props: OrdersProviderProps) {
     const listener = orderOrchestrator.run();
     listener.on("order", (order) => {
       setOrders((prev) => [...prev, order]);
+      toast.success(`Nuevo pedido #${order.id}!`, {
+        position: "top-center",
+      });
     });
   }, []);
 
   const pickup = (order: Order) => {
-    setOrders((prev) => prev.filter((o) => o.id !== order.id));
+    updateOrderState(order.id, "DELIVERED");
   };
 
   const updateOrderState = (
