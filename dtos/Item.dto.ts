@@ -6,4 +6,5 @@ export type Item = {
     currency: string;
     amount: number;
   };
+  ingredients?: string;
 };
