@@ -1,6 +1,7 @@
 import {
   ReactNode,
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useState,
@@ -11,6 +12,7 @@ import { Rider } from "@/dtos/Rider.dto";
 
 export type RidersContextProps = {
   riders: Array<Rider>;
+  dispatchRiderPickup: (orderId: string) => void;
 };
 
 export const RidersContext = createContext<RidersContextProps>(
@@ -27,8 +29,19 @@ export function RidersProvider(props: RidersProviderProps) {
   const [assignedOrders, setAssignedOrders] = useState<string[]>([]);
   const { orders, pickup } = useOrders();
 
+  const dispatchRiderPickup = (orderId: string) => {
+    const orderToPickup = orders.find((o) => o.id === orderId);
+    if (orderToPickup && orderToPickup.state === "READY") {
+      pickup(orderToPickup);
+      setRiders((prev) => prev.filter((r) => r.orderWanted !== orderId));
+    }
+  };
+
   useEffect(() => {
-    const order = orders.find((order) => !assignedOrders.includes(order.id));
+    const order = orders.find(
+      (order) =>
+        !assignedOrders.includes(order.id) && order.state !== "DELIVERED"
+    );
     if (order) {
       setAssignedOrders((prev) => [...prev, order.id]);
       setTimeout(() => {
@@ -36,14 +49,13 @@ export function RidersProvider(props: RidersProviderProps) {
           ...prev,
           {
             orderWanted: order.id,
-            pickup,
           },
         ]);
       }, getRandomInterval(4_000, 10_000));
     }
-  }, [orders]);
+  }, [orders, assignedOrders]);
 
-  const context = { riders };
+  const context = { riders, dispatchRiderPickup };
   return (
     <RidersContext.Provider value={context}>
       {props.children}
