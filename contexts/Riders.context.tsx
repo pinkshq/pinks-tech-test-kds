@@ -9,6 +9,7 @@ import {
 import { useOrders } from "./Orders.context";
 import { getRandomInterval } from "@/lib/utils";
 import { Rider } from "@/dtos/Rider.dto";
+import { toast } from "react-hot-toast";
 
 export type RidersContextProps = {
   riders: Array<Rider>;
@@ -51,6 +52,9 @@ export function RidersProvider(props: RidersProviderProps) {
             orderWanted: order.id,
           },
         ]);
+        toast.success(`Un rider va a por el pedido #${order.id}!`, {
+          position: "top-right",
+        });
       }, getRandomInterval(4_000, 10_000));
     }
   }, [orders, assignedOrders]);
