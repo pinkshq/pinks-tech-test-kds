@@ -36,28 +36,54 @@ http://localhost:3000
 In this challenge, you will be faced with the task of managing several orders simultaneously using your skills and creativity to solve a unique problem: orders are shipped via Glovo, and we need to enable our in-store team to operate the Kanban in order to deliver the orders to the riders efficiently.
 
 ## What was implemented from the challenge?
-- Functional Kanban:
-- Orders flow between columns: Pending → In preparation → Ready.
-- Riders show up and pick up ready orders.
-- The team can move orders and deliver them visually and intuitively.
+- Functional Kanban Board:
+Orders smoothly flow through columns representing stages: Pending → In Preparation → Ready.
+Riders appear to pick up ready orders, enabling a clear, visual, and intuitive workflow for the team.
 
-Centralised status management:
-- Use of React Context for orders and riders.
-- Simulation of order and rider arrival.
+- Centralized Status Management:
+Leveraged React Context API to centrally manage the state of orders and riders, ensuring synchronized updates across the system.
+Included simulation of order and rider arrivals to mimic real-time operations.
 
 ## What improvements and extras were added?
-- Drag & Drop:
-You can drag and drop orders between columns to change their status.
-- Delivered orders history:
-Dedicated section to view all delivered orders.
-- Visual notifications:
-Toasts for new orders and riders.
-- Order details in modal:
-When you click on an order, you can see a modal with details of the burger, ingredients, image and price.
-- Mock of different burgers per order:
-Each order has different burgers, with realistic and visual data.
-- UI/UX:
-Order states displayed in a user-readable format.
+- Drag & Drop Interaction:
+Users can easily drag and drop orders between different status columns, streamlining order management and allowing quick updates.
+
+- Delivered Orders History:
+A dedicated section records all delivered orders, providing traceability and operational insights.
+
+- Visual Notifications:
+Implemented toast notifications for new orders and rider arrivals to keep the team promptly informed.
+
+- Detailed Order View Modal:
+Clicking on any order opens a modal displaying detailed information such as burger types, ingredients, images, and pricing — enhancing clarity and decision-making.
+
+- Realistic Mock Data for Burgers:
+Each order features unique burger data with realistic visuals and information, improving the demo’s authenticity.
+
+- Improved UI/UX:
+Order statuses are presented in a clear, user-friendly format that improves readability and usability.
+
+### Additional Features:
+
+- Time tracking per order, with color-coded alerts for critical delays.
+
+- Dashboard showing workload distribution across order stages and rider availability.
+
+- Priority flags for urgent orders.
+
+- Audio alerts for new orders and critical timing notifications.
+
+## References to Industry-Standard KDS Software
+Many modern KDS platforms implement similar core features, validating this approach:
+
+- [Toast KDS](https://pos.toasttab.com/):
+Uses a Kanban-style interface with drag & drop order management, detailed item views, and audio/visual alerts to streamline kitchen operations.
+
+- [Square KDS](https://squareup.com/us/en/point-of-sale/restaurants):
+Offers centralized order tracking, status updates, and prioritized alerts with an intuitive drag & drop UI, supporting efficient order flow.
+
+- [Lightspeed KDS](https://www.lightspeedhq.com/pos/restaurant/kitchen-display-system/):
+Features real-time updates, detailed order views, priority management, and sound notifications to optimize kitchen throughput.
 
 ## Contribution
 
