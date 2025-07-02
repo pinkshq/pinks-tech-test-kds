@@ -47,6 +47,11 @@ function getRandomBurgers() {
   }));
 }
 
+export function getRandomOrderType(): "delivery" | "takeaway" | "dinein" {
+  const types = ["delivery", "takeaway", "dinein"] as const;
+  return types[Math.floor(Math.random() * types.length)];
+}
+
 export class OrderOrchestrator {
   private interval: NodeJS.Timeout | undefined;
   private maxOrders: number = getRandomInterval(10, 30);
@@ -63,6 +68,7 @@ export class OrderOrchestrator {
         state: "PENDING",
         items: getRandomBurgers(),
         createdAt: Date.now(),
+        orderType: getRandomOrderType(),
       });
       this.maxOrders--;
       if (this.maxOrders <= 0) {

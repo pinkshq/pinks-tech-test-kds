@@ -34,6 +34,13 @@ function getBorderColorByState(state: string) {
   return "#222";
 }
 
+const orderTypeLabels: Record<string, string> = {
+  delivery: "Delivery",
+  takeaway: "Takeaway",
+  dinein: "Dine-in",
+  all: "Todos",
+};
+
 export default function Column(props: ColumnProps) {
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
   const [now, setNow] = useState(Date.now());
@@ -79,7 +86,7 @@ export default function Column(props: ColumnProps) {
                     >
                       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                         <span>
-                          orden: <b>{order.id}</b>
+                          Orden: <b>{order.id}</b>
                         </span>
                         <span
                           style={{
@@ -94,6 +101,15 @@ export default function Column(props: ColumnProps) {
                         >
                           {min >= 15 && <span style={{marginRight: 4}}>⚠️</span>}
                           ⏱️ {min}:{sec.toString().padStart(2, "0")}
+                        </span>
+                      </div>
+                      <div style={{ marginTop: 6 }}>
+                        <span style={{
+                          fontSize: "0.93em",
+                          fontWeight: 600,
+                          letterSpacing: 0.2,
+                        }}>
+                          {orderTypeLabels[order.orderType]}
                         </span>
                       </div>
                       <div>

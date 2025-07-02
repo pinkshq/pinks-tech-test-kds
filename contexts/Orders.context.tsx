@@ -1,5 +1,5 @@
 import { Order } from "@/dtos/Order.dto";
-import { OrderOrchestrator } from "@/lib";
+import { OrderOrchestrator, getRandomOrderType } from "@/lib";
 import {
   ReactNode,
   createContext,
@@ -34,7 +34,15 @@ export function OrdersProvider(props: OrdersProviderProps) {
     const orderOrchestrator = new OrderOrchestrator();
     const listener = orderOrchestrator.run();
     listener.on("order", (order) => {
-      setOrders((prev) => [...prev, order]);
+      const validTypes = ["delivery", "takeaway", "dinein"];
+      let safeOrderType = order.orderType;
+      if (!validTypes.includes(order.orderType)) {
+        safeOrderType = getRandomOrderType();
+      }
+      setOrders((prev) => [
+        ...prev,
+        { ...order, orderType: safeOrderType },
+      ]);
       toast.success(`Nuevo pedido #${order.id}!`, {
         position: "top-center",
       });

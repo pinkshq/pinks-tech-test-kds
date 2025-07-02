@@ -8,6 +8,13 @@ const statusLabels: Record<string, string> = {
   DELIVERED: "Delivered",
 };
 
+const orderTypeLabels: Record<string, string> = {
+  delivery: "Delivery",
+  takeaway: "Takeaway",
+  dinein: "Dine-in",
+  all: "Todos",
+};
+
 interface Props {
   order: Order;
   onClose: () => void;
@@ -21,6 +28,11 @@ export default function OrderDetailsModal({ order, onClose }: Props) {
         <h2>Order Details</h2>
         <div className={styles.info}><b>ID:</b> {order.id}</div>
         <div className={styles.info}><b>Status:</b> {statusLabels[order.state] || order.state}</div>
+        {orderTypeLabels[order.orderType] && (
+          <div className={styles.info}>
+            <b>Type:</b> {orderTypeLabels[order.orderType]}
+          </div>
+        )}
         <div className={styles.itemsTitle}>Burgers:</div>
         <div className={styles.itemsList}>
           {order.items.length === 0 && <div className={styles.empty}>(No burgers)</div>}

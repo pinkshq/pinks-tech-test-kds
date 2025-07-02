@@ -9,8 +9,9 @@ const columns = [
   { key: "READY", title: "Listo" },
 ];
 
-export default function Kanban() {
-  const { orders, updateOrderState } = useOrders();
+export default function Kanban({ orders: propOrders }: { orders?: any[] }) {
+  const { orders: contextOrders, updateOrderState } = useOrders();
+  const orders = propOrders || contextOrders;
 
   const handleDragEnd = (result: any) => {
     const { destination, source, draggableId } = result;
