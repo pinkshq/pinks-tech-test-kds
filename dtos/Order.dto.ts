@@ -6,4 +6,6 @@ export type Order = {
   items: Array<Item>;
   createdAt: number;
   deliveredAt?: number;
+  orderType: "delivery" | "takeaway" | "dinein";
+  isPriority?: boolean;
 };
