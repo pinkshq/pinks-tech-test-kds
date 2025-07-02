@@ -56,25 +56,29 @@ export class OrderOrchestrator {
   private interval: NodeJS.Timeout | undefined;
   private maxOrders: number = getRandomInterval(10, 30);
   private eventEmitter = new EventEmitter();
+  private orderCount = 0;
 
-  private emit(order: Order) {
+  private emit(order: Order & { isPriority?: boolean }) {
     this.eventEmitter.emit("order", order);
   }
 
   public run() {
     this.interval = setInterval(() => {
+      this.orderCount++;
+      const isPriority = this.orderCount <= 3;
       this.emit({
         id: getRandomId(),
         state: "PENDING",
         items: getRandomBurgers(),
         createdAt: Date.now(),
         orderType: getRandomOrderType(),
+        isPriority,
       });
       this.maxOrders--;
       if (this.maxOrders <= 0) {
         clearInterval(this.interval);
       }
-    }, 2000);
+    }, 3000);
     return this.eventEmitter;
   }
 }
