@@ -89,6 +89,11 @@ export default function Column(props: ColumnProps) {
                         <span>
                           Orden: <b>{order.id}</b>
                         </span>
+                        {order.isPriority && (
+                          <span title="Orden prioritaria" style={{ marginLeft: 8, fontSize: 22, color: '#e53935', fontWeight: 700 }}>
+                            ⚡️
+                          </span>
+                        )}
                         <span
                           className={min >= 15 ? s["blink-timer"] : undefined}
                           style={{
