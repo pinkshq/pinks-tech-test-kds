@@ -34,6 +34,13 @@ export function OrdersProvider(props: OrdersProviderProps) {
     const orderOrchestrator = new OrderOrchestrator();
     const listener = orderOrchestrator.run();
     listener.on("order", (order) => {
+      if (order.isPriority) {
+        const audio = new Audio("/sounds/priority-order.mp3");
+        audio.play();
+      } else {
+        const audio = new Audio("/sounds/new-order.mp3");
+        audio.play();
+      }
       const validTypes = ["delivery", "takeaway", "dinein"];
       let safeOrderType = order.orderType;
       if (!validTypes.includes(order.orderType)) {

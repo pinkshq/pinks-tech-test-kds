@@ -5,6 +5,7 @@ import {
   useContext,
   useEffect,
   useState,
+  useRef,
 } from "react";
 import { useOrders } from "./Orders.context";
 import { getRandomInterval } from "@/lib/utils";
@@ -58,6 +59,21 @@ export function RidersProvider(props: RidersProviderProps) {
       }, getRandomInterval(4_000, 10_000));
     }
   }, [orders, assignedOrders]);
+
+  const notifiedMatches = useRef(new Set<string>());
+  useEffect(() => {
+    riders.forEach((rider) => {
+      const order = orders.find((o) => o.id === rider.orderWanted);
+      if (order && order.state === "READY") {
+        const matchKey = `${order.id}-${rider.orderWanted}`;
+        if (!notifiedMatches.current.has(matchKey)) {
+          const audio = new Audio("/sounds/new-rider.mp3");
+          audio.play();
+          notifiedMatches.current.add(matchKey);
+        }
+      }
+    });
+  }, [orders, riders]);
 
   const context = { riders, dispatchRiderPickup };
   return (
