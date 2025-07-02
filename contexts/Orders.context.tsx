@@ -42,7 +42,13 @@ export function OrdersProvider(props: OrdersProviderProps) {
   }, []);
 
   const pickup = (order: Order) => {
-    updateOrderState(order.id, "DELIVERED");
+    setOrders((prev) =>
+      prev.map((o) =>
+        o.id === order.id
+          ? { ...o, state: "DELIVERED", deliveredAt: Date.now() }
+          : o
+      )
+    );
   };
 
   const updateOrderState = (

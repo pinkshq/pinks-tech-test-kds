@@ -62,6 +62,7 @@ export class OrderOrchestrator {
         id: getRandomId(),
         state: "PENDING",
         items: getRandomBurgers(),
+        createdAt: Date.now(),
       });
       this.maxOrders--;
       if (this.maxOrders <= 0) {
