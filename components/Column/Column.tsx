@@ -18,7 +18,8 @@ function getElapsedTime(createdAt: number) {
   return { min, sec };
 }
 
-function getTimerColorByState(state: string) {
+function getTimerColorByState(state: string, min: number) {
+  if (min >= 15) return "#e53935"; // red
   if (state === "PENDING") return "#1976d2"; // blue
   if (state === "IN_PROGRESS") return "#fbc02d"; // yellow
   if (state === "READY") return "#43a047"; // green
@@ -64,7 +65,7 @@ export default function Column(props: ColumnProps) {
             </div>
             {props.orders.map((order, idx) => {
               const { min, sec } = getElapsedTime(order.createdAt);
-              const timerColor = getTimerColorByState(order.state);
+              const timerColor = getTimerColorByState(order.state, min);
               const borderColor = getBorderColorByState(order.state);
               return (
                 <Draggable key={order.id} draggableId={order.id} index={idx}>
@@ -89,6 +90,7 @@ export default function Column(props: ColumnProps) {
                           Orden: <b>{order.id}</b>
                         </span>
                         <span
+                          className={min >= 15 ? s["blink-timer"] : undefined}
                           style={{
                             marginLeft: 8,
                             fontWeight: 600,
