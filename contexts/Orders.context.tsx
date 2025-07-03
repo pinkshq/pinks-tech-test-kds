@@ -29,6 +29,8 @@ export type OrdersProviderProps = {
 
 export function OrdersProvider(props: OrdersProviderProps) {
   const [orders, setOrders] = useState<Array<Order>>([]);
+  const [outOfTimePlayed, setOutOfTimePlayed] = useState<Record<string, boolean>>({});
+  const [now, setNow] = useState(Date.now());
 
   useEffect(() => {
     const orderOrchestrator = new OrderOrchestrator();
@@ -55,6 +57,42 @@ export function OrdersProvider(props: OrdersProviderProps) {
       });
     });
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    orders.forEach((order) => {
+      const elapsed = now - order.createdAt;
+      const isInProgress = order.state === "IN_PROGRESS";
+      if (
+        isInProgress &&
+        elapsed > 900000 &&
+        !outOfTimePlayed[order.id]
+      ) {
+        let count = 0;
+        const audio = new Audio("/sounds/out-of-time.mp3");
+        audio.volume = 1;
+        const play = () => {
+          if (count < 3) {
+            audio.currentTime = 0;
+            audio.play()
+              .then(() => {
+                count++;
+                audio.onended = play;
+              })
+              .catch((err) => {
+                console.error("Error playing audio:", err);
+              });
+          }
+        };
+        play();
+        setOutOfTimePlayed((prev) => ({ ...prev, [order.id]: true }));
+      }
+    });
+  }, [now, orders, outOfTimePlayed]);
 
   const pickup = (order: Order) => {
     setOrders((prev) =>
