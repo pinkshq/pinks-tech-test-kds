@@ -85,6 +85,30 @@ Offers centralized order tracking, status updates, and prioritized alerts with a
 - [Lightspeed KDS](https://www.lightspeedhq.com/pos/restaurant/kitchen-display-system/):
 Features real-time updates, detailed order views, priority management, and sound notifications to optimize kitchen throughput.
 
+## How can it improve kitchen operations?
+With the functionalities I implemented, KDS improves kitchen operations in these ways:
+
+- Visual and intuitive workflow:
+The Kanban system together with drag & drop functionality allows the team to move orders quickly between states, reducing management time, errors and improving the clarity of the operational flow.
+
+- Visual and audible alerts:
+Immediate notifications alert the team to the arrival of new orders and riders, and generate alerts when an order exceeds the estimated kitchen time. This ensures that staff are always aware and can make timely decisions.
+
+- Alarm for out-of-time orders:
+When an order exceeds a critical threshold (e.g. 15 minutes in ‘In Preparation’), an audible and visual alert is triggered, allowing quick identification and immediate action, avoiding delivery delays and potential customer complaints.
+
+- Order prioritisation:
+The ability to mark orders as a priority allows you to address exceptions in a timely manner, meeting special commitments or correcting delays, significantly improving the customer experience.
+
+- Time control and metrics:
+Real-time visualisation of the elapsed time of each order, along with delivery history and performance metrics, allows you to detect bottlenecks, optimise resources and better plan production.
+
+- Coordination with riders:
+Simulation and visualisation of riders facilitates the collection of ready orders, avoiding accumulations in the kitchen and improving the organisation of order dispatch.
+
+- Improved communication:
+By centralising all relevant information in a single system - including details of each order, its status and alerts - verbal queries and errors are reduced, resulting in a more orderly and efficient kitchen.
+
 ## Contribution
 
 Made with ❤️ by [Luis](https://github.com/luislucena16)
