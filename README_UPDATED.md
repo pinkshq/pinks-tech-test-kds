@@ -73,18 +73,6 @@ Order statuses are presented in a clear, user-friendly format that improves read
 
 - Audio alerts for new orders and critical timing notifications.
 
-## References to Industry-Standard KDS Software
-Many modern KDS platforms implement similar core features, validating this approach:
-
-- [Toast KDS](https://pos.toasttab.com/):
-Uses a Kanban-style interface with drag & drop order management, detailed item views, and audio/visual alerts to streamline kitchen operations.
-
-- [Square KDS](https://squareup.com/us/en/point-of-sale/restaurants):
-Offers centralized order tracking, status updates, and prioritized alerts with an intuitive drag & drop UI, supporting efficient order flow.
-
-- [Lightspeed KDS](https://www.lightspeedhq.com/pos/restaurant/kitchen-display-system/):
-Features real-time updates, detailed order views, priority management, and sound notifications to optimize kitchen throughput.
-
 ## How can it improve kitchen operations?
 With the functionalities I implemented, KDS improves kitchen operations in these ways:
 
@@ -108,6 +96,18 @@ Simulation and visualisation of riders facilitates the collection of ready order
 
 - Improved communication:
 By centralising all relevant information in a single system - including details of each order, its status and alerts - verbal queries and errors are reduced, resulting in a more orderly and efficient kitchen.
+
+## References to Industry-Standard KDS Software
+Many modern KDS platforms implement similar core features, validating this approach:
+
+- [Toast KDS](https://pos.toasttab.com/):
+Uses a Kanban-style interface with drag & drop order management, detailed item views, and audio/visual alerts to streamline kitchen operations.
+
+- [Square KDS](https://squareup.com/us/en/point-of-sale/restaurants):
+Offers centralized order tracking, status updates, and prioritized alerts with an intuitive drag & drop UI, supporting efficient order flow.
+
+- [Lightspeed KDS](https://www.lightspeedhq.com/pos/restaurant/kitchen-display-system/):
+Features real-time updates, detailed order views, priority management, and sound notifications to optimize kitchen throughput.
 
 ## Contribution
 
